@@ -69,14 +69,8 @@ configure container environment:
 ```apt-get update && apt-get install PACKAGE_NAME```  
 run inside the container shell
 
-list active containers:  
-```docker ps```
-
 save container to image:  
 ```docker commit CONTAINER_NAME NEW_IMAGE_NAME```
-
-list images:  
-```docker images```
 
 #### Dockerfile (2nd way)
 three-step process
@@ -97,5 +91,24 @@ build image from Dockerfile:
 ```docker build -t IMAGE_NAME:TAG Dockerfile_Directory```  
 ```-t```: set image name and tag
 
+### Commands
 list images:  
 ```docker images```
+
+remove a image:  
+```docker image rm IMAGE_NAME```
+
+list all containers:  
+```docker ps -a```
+
+list active containers:  
+```docker ps```
+
+list stopped containers:  
+```docker ps -a -f status=exited```
+
+list all containers from a image:  
+```docker ps -a -f ancestor=IMAGE_NAME```
+
+remove a container:  
+```docker rm CONTAINER_ID```
