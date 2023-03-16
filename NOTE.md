@@ -7,43 +7,42 @@ generate binaries
 compiler optimizations  
 feedback-guided learning
     
-    Data Base
-        unstripped (with debug symbols) binaries
+Data Base:  
+unstripped (with debug symbols) binaries
 
 ## Docker
 package up applications and preconfigured server environments  
 file --build-> image --run-> container
 
-    Create a Docker image
-        Interactive
-            changing existing container environment and saving the resulting state as a new image 
-        Dockerfile
-            specifications for creating a Docker image
+### 2 ways for creating a docker image
+Interactive:  
+changing existing container environment and saving the resulting state as a new image
 
-    Image Layers
-        form a image hierarchy
-        dependent on lower layers  
-        layer changed most -> highest in the hierarchy
+Dockerfile:  
+specifications for creating a Docker image
 
-        Container Layer (top)
-            runtime layer that mark changes of containers from original images
+### Image Layers
+Form a image hierarchy, dependent on lower layers, layer changed most -> highest in the hierarchy
 
-        Parent Image (bot)
-            basic building blocks (first layer) for a container  
-            Typical parent image: stripped-down Linux distribution with DBMS or CMS
+Container Layer (top):  
+runtime layer that mark changes of containers from original images
 
-        Base Image (bot)
-            similar to parent image, but is empty and waiting for DIY
+Parent Image (bot):  
+basic building blocks (first layer) for a container  
+Typical parent image: stripped-down Linux distribution with DBMS or CMS
 
-        Manifest
-            JSON file comprises info for configuring container
+Base Image (bot):  
+similar to parent image, but is empty and waiting for DIY
 
-    Container Registries
-        catalogs of storage locations (repositories) for container images  
-        Docker Hub, Red Hat Quay, Amazon ECR...
+Manifest:  
+JSON file comprises info for configuring container
 
-    ### Container Repositories
-    collection of multi versions for the same container image
+Container Registries:  
+catalogs of storage locations (repositories) for container images  
+Docker Hub, Red Hat Quay, Amazon ECR...
+
+Container Repositories:  
+collection of multi versions for the same container image
 
 # Requirments
 ## Docker
@@ -59,27 +58,18 @@ sudo usermod -aG docker $USER
 ### Create Docker Image
 Interactive
 
-    run image in shell```docker run -it OLD_IMAGE_NAME:TAG bash```  
+run container from image inside a shell:  
+```docker run -it OLD_IMAGE_NAME:TAG bash```  
+```OLD_IMAGE_NAME```: original image of the container  
+```TAG```: specify image version (default the latest one)  
+```–name```: specify container name (default random name)
 
-        OLD_IMAGE_NAME
-            original image of the container
-        
-        TAG
-            specify image version (default the latest one)  
-        
-        –name
-            specify container name (default random name)
+configure container environment:  
+```apt-get update && apt-get install PACKAGE_NAME```  
+run inside the container shell
 
-        local / Docker Hub (Download)
+list active containers:  
+```docker ps```
 
-    configure container environment
-    inside the container shell, run 
-    ```
-    apt-get update && apt-get install PACKAGE_NAME
-    ```
-
-    list active containers
-    ```docker ps```
-
-    save image
-    ```docker commit CONTAINER_NAME NEW_IMAGE_NAME```
+save container to image:  
+```docker commit CONTAINER_NAME NEW_IMAGE_NAME```
