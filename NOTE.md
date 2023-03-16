@@ -59,21 +59,21 @@ sudo usermod -aG docker $USER
 #### Interactive
 Create containner from original image, modify container, save changes to a new image
 
-run container from image inside a shell:
+run container from image inside a shell:  
 ```docker run -it OLD_IMAGE_NAME:TAG bash```  
 ```OLD_IMAGE_NAME```: original image of the container  
 ```TAG```: specify image version (default the latest one)  
 ```–name```: specify container name (default random name)
 
-configure container environment:
+configure container environment:  
 ```apt-get update && apt-get install PACKAGE_NAME```  
 run inside the container shell
 
-list active containers:
+list active containers:  
 ```docker ps```
 
-save container to image:
+save container to image:  
 ```docker commit CONTAINER_NAME NEW_IMAGE_NAME```
 
-list images
+list images:  
 ```docker images```
