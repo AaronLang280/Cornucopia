@@ -56,7 +56,7 @@ sudo usermod -aG docker $USER
 ```
 
 ### Create Docker Image
-#### Interactive
+#### Interactive (1st way)
 Create containner from original image, modify container, save changes to a new image
 
 run container from image inside a shell:  
@@ -74,6 +74,28 @@ list active containers:
 
 save container to image:  
 ```docker commit CONTAINER_NAME NEW_IMAGE_NAME```
+
+list images:  
+```docker images```
+
+#### Dockerfile (2nd way)
+three-step process
+
+example Dockerfile:  
+```
+# Use the official Ubuntu 18.04 as base
+FROM ubuntu:18.04
+# Install nginx and curl
+RUN apt-get update &&\
+apt-get upgrade -y &&\
+apt-get install -y nginx curl &&\
+rm -rf /var/lib/apt/lists/*
+```  
+```\```: backslash for line continuation
+
+build image from Dockerfile:  
+```docker build -t IMAGE_NAME:TAG Dockerfile_Directory```  
+```-t```: set image name and tag
 
 list images:  
 ```docker images```
