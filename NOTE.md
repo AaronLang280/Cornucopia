@@ -37,11 +37,11 @@ similar to parent image, but is empty and waiting for DIY
 Manifest:  
 JSON file comprises info for configuring container
 
-Container Registries:  
+### Container Registries:  
 catalogs of storage locations (repositories) for container images  
 Docker Hub, Red Hat Quay, Amazon ECR...
 
-Container Repositories:  
+### Container Repositories:  
 collection of multi versions for the same container image
 
 # Requirments
@@ -49,27 +49,31 @@ collection of multi versions for the same container image
 ### Installation
 [official step_by_step guid](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
 
-### Manage Docker as a non-root user
+Manage Docker as a non-root user:
 ```
 sudo groupadd docker
 sudo usermod -aG docker $USER
 ```
 
 ### Create Docker Image
-Interactive
+#### Interactive
+Create containner from original image, modify container, save changes to a new image
 
-run container from image inside a shell:  
+run container from image inside a shell:
 ```docker run -it OLD_IMAGE_NAME:TAG bash```  
 ```OLD_IMAGE_NAME```: original image of the container  
 ```TAG```: specify image version (default the latest one)  
 ```–name```: specify container name (default random name)
 
-configure container environment:  
+configure container environment:
 ```apt-get update && apt-get install PACKAGE_NAME```  
 run inside the container shell
 
-list active containers:  
+list active containers:
 ```docker ps```
 
-save container to image:  
+save container to image:
 ```docker commit CONTAINER_NAME NEW_IMAGE_NAME```
+
+list images
+```docker images```
